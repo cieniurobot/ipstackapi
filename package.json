@@ -45,8 +45,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "echo 'Test here!'",
-      "pre-push": "echo 'Test here!"
+      "pre-commit": "echo 'Test here!'"
     }
   }
 }
