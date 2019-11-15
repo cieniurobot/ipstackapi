@@ -1,14 +1,20 @@
 import express from "express";
+import logger from "../../../../logger";
 
 const geolocationRouter = express.Router();
 
 geolocationRouter.use(function timeLog(req, res, next) {
-    console.log('Time: ', Date.now());
+    logger.info('Time: ', Date.now());
     next();
 });
 
+geolocationRouter.get('/:id', (req, res) => {
+    const id = req.params.id;
+    res.json(`Hello id: ${id}`)
+});
+
 geolocationRouter.get('/', (req, res) => {
-    res.send('Hello World!')
+    res.json({"message": "Hello World!"})
 });
 
 geolocationRouter.post('/', (req, res) => {
