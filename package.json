@@ -8,7 +8,8 @@
     "pretest:jest": "tsc -p tsconfig.test.json",
     "pretest:coverage": "tsc -p tsconfig.test.json",
     "lint": "tslint --project tsconfig.json -e config",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "jsonlint": "jsonlint ./package.json ./config/development.json /development.json.dist -q",
+    "test": "NODE_ENV=development jest --no-cache --detectOpenHandles --runInBand --coverage --forceExit",
     "build": "tsc --outDir ./dist",
     "start": "node dist/index.js",
     "start:local": "NODE_ENV=development nodemon -e ts --exec 'ts-node' index.ts",
@@ -18,6 +19,8 @@
   "author": "Marcin Plociennik",
   "license": "ISC",
   "devDependencies": {
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0",
     "@types/bluebird": "^3.5.29",
     "@types/body-parser": "^1.17.1",
     "@types/config": "0.0.36",
@@ -32,6 +35,7 @@
     "jest": "^24.9.0",
     "jsonlint": "^1.6.3",
     "nodemon": "^1.19.4",
+    "ts-jest": "^24.1.0",
     "ts-node": "^8.5.0",
     "tslint": "^5.20.1",
     "typescript": "^3.7.2"
@@ -53,7 +57,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "echo 'Test here!'"
+      "pre-commit": "npm run lint && npm run jsonlint'",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   }
 }

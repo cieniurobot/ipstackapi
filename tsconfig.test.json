@@ -1,0 +1,21 @@
+{
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"baseUrl": "./",
+		"outDir": "./distTest",
+		"types": [
+			"node",
+			"chai",
+			"jest",
+			"config"
+		]
+	},
+	"include": [
+		"local.json",
+		"jest.config.js",
+		"__test__/**/*"
+	],
+	"exclude": [
+		"node_modules"
+	]
+}
