@@ -57,7 +57,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint && npm run jsonlint'",
+      "pre-commit": "npm run lint && npm run jsonlint",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   }

@@ -5,7 +5,6 @@
 		"outDir": "./distTest",
 		"types": [
 			"node",
-			"chai",
 			"jest",
 			"config"
 		]
