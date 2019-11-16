@@ -1,45 +1,16 @@
-import express from "express";
 import logger from "../../../../logger";
-import Geolocation from "../../../../db/models/Geolocation";
-import GeolocationLocation from "../../../../db/models/GeolocationLocation";
-import GeolocationResponse from "../responses/geolocation";
+import express, {NextFunction, Request, Response} from "express";
+import GeolocationResponse from "../responses/GeolocationResponse";
+import GeolocationRepository from "../../../../db/repositories/GeolocationRepository";
 
 const geolocationRouter = express.Router();
+const geolocationRepository = new GeolocationRepository();
 
-geolocationRouter.use(function timeLog(req, res, next) {
-    logger.info('geolocation router time: ', Date.now());
+geolocationRouter.use(function timeLog(req: Request, res: Response, next: NextFunction) {
+    logger.info(`geolocation router time: ${Date.now()}`);
     next();
 });
 
-geolocationRouter.get('/:id', async (req, res) => {
-    if (!req.params.id) {
-        res.status(400).json({
-            "message": "Bad request! please type Geolocation ID."
-        });
-    }
-
-    try {
-        const geolocation = await Geolocation.findByPk(req.params.id, {
-            include: [
-                {
-                    model: GeolocationLocation,
-                    as: 'location'
-                }
-            ]
-        });
-        if (geolocation) {
-            res.json(new GeolocationResponse(geolocation));
-        }
-        res.status(404).json({
-            message: `Geolocation not found! ID: ${req.params.id}`
-        });
-    } catch (e) {
-        logger.error(e.message);
-        res.status(500).json({
-            message: "Something went wrong!"
-        });
-    }
-});
 
 geolocationRouter.get('/', (req, res) => {
     res.json({"message": "Hello World!"});
@@ -55,6 +26,25 @@ geolocationRouter.put('/', (req, res) => {
 
 geolocationRouter.delete('/', (req, res) => {
     res.send('Got a DELETE request at /user');
+});
+
+geolocationRouter.get('/:id', async (req, res, next) => {
+    logger.debug(`geolocationRouter.get by id : ${req.params.id}`);
+    if (!req.params.id) {
+        res.status(400).json({
+            "message": "Bad request! please type Geolocation ID."
+        });
+    }
+
+    const data = await geolocationRepository.getByPk(parseInt(req.params.id));
+    if (data) {
+        const geolocationResponse = new GeolocationResponse(data);
+        res.status(200).json(geolocationResponse);
+        return next();
+    }
+    res.status(404).json({
+        message: `Geolocation not found! ID: ${req.params.id}`
+    });
 });
 
 export default geolocationRouter;
