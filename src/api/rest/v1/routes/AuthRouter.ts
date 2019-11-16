@@ -6,7 +6,7 @@ const authRouter = express.Router();
 const userService = new UserService();
 
 authRouter.use(function timeLog(req, res, next) {
-    logger.info('New Auth request time: ', Date.now());
+    logger.info(`New Auth request time: ${Date.now()}`);
     next();
 });
 

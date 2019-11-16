@@ -29,7 +29,7 @@ module.exports = {
       is_eu: {
         type: Sequelize.BOOLEAN
       },
-      geolocationId: {
+      geolocation_id: {
         type: Sequelize.INTEGER,
         references: { model: 'geolocation', key: 'id' }
       },
