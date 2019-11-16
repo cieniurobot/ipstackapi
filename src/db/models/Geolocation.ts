@@ -36,12 +36,12 @@ export default class Geolocation extends Model<Geolocation> {
     @Column({
         type: DataType.DECIMAL(10, 8)
     })
-    latitude: string;
+    latitude: number;
 
     @Column({
         type: DataType.DECIMAL(10, 8)
     })
-    longtitude: string;
+    longtitude: number;
 
     @HasOne(() => GeolocationLocation, {onDelete: 'cascade'})
     location: GeolocationLocation;
