@@ -12,7 +12,7 @@ export default interface GeolocationResponseInterface {
     city: string;
     zip: string;
     latitude: number;
-    longtitude: number;
+    longitude: number;
     location: GeolocationLocationResponseInterface;
     created_at: Date;
     updated_at: Date;

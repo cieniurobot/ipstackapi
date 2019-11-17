@@ -16,7 +16,7 @@ export default class GeolocationResponse implements GeolocationResponseInterface
     city: string;
     zip: string;
     latitude: number;
-    longtitude: number;
+    longitude: number;
     location: GeolocationLocationResponseInterface;
     created_at: Date;
     updated_at: Date;
@@ -33,7 +33,7 @@ export default class GeolocationResponse implements GeolocationResponseInterface
         this.city = attrs.city;
         this.zip = attrs.zip;
         this.latitude = attrs.latitude;
-        this.longtitude = attrs.longtitude;
+        this.longitude = attrs.longitude;
         this.location = new GeolocationLocationResponse(attrs.location);
         this.created_at = attrs.created_at;
         this.updated_at = attrs.updated_at;
