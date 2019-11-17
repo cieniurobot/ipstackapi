@@ -2,7 +2,6 @@ import logger from "../../logger";
 import Geolocation from "../models/Geolocation";
 import GeolocationLocation from "../models/GeolocationLocation";
 import GeolocationLocationLanguage from "../models/GeolocationLocationLanguage";
-import GeolocationLocationGeolocationLocationLanguage from "../models/GeolocationLocationGeolocationLocationLanguage";
 import GeolocationRequest from "../../api/rest/v1/requests/GeolocationRequest";
 
 export default class GeolocationRepository {
@@ -50,14 +49,8 @@ export default class GeolocationRepository {
                         as: 'location',
                         include: [
                             {
-                                model: GeolocationLocationGeolocationLocationLanguage,
-                                as: 'languages',
-                                include: [
-                                    {
-                                        model: GeolocationLocationLanguage,
-                                        as: 'language'
-                                    }
-                                ]
+                                model: GeolocationLocationLanguage,
+                                as: 'languages'
                             }
                         ]
                     }
