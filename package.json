@@ -7,7 +7,7 @@
     "pretest": "tsc -p tsconfig.test.json",
     "pretest:jest": "tsc -p tsconfig.test.json",
     "pretest:coverage": "tsc -p tsconfig.test.json",
-    "lint": "tslint --project tsconfig.json -e config",
+    "lint": "tslint --project tsconfig.json",
     "jsonlint": "jsonlint ./package.json ./config/development.json /development.json.dist -q",
     "test": "NODE_ENV=development jest --no-cache --detectOpenHandles --runInBand --coverage --forceExit",
     "build": "tsc --outDir ./dist",
