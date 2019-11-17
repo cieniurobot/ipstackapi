@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('geolocation_location', {
+    return queryInterface.createTable('g_location', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -31,6 +31,7 @@ module.exports = {
       },
       geolocation_id: {
         type: Sequelize.INTEGER,
+        onDelete: 'cascade',
         references: { model: 'geolocation', key: 'id' }
       },
       created_at: {
@@ -44,6 +45,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('geolocation_location');
+    return queryInterface.dropTable('g_location');
   }
 };
