@@ -10,7 +10,8 @@ module.exports = {
       },
       gl_id: {
         type: Sequelize.INTEGER,
-        references: { model: 'g_location', key: 'id' }
+        onDelete: 'cascade',
+        references: { model: 'g_location', key: 'id'}
       },
       gll_id: {
         type: Sequelize.INTEGER,
