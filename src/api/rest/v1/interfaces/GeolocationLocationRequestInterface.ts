@@ -1,4 +1,5 @@
 export default interface GeolocationLocationRequestInterface {
+    id: number;
     geoname_id: number;
     capital: string;
     languages_ids: number[];

@@ -32,9 +32,9 @@ export default class GeolocationLocationResponse implements GeolocationLocationR
         if (!languages) {
             return [];
         }
-        const languagesResponses = languages.map((item) => {
+
+        return languages.map((item) => {
             return new GeolocationLocationLanguageResponse(item);
         });
-        return languagesResponses;
     }
 }

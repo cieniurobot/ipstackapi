@@ -1,6 +1,7 @@
 import GeolocationLocationRequestInterface from "../interfaces/GeolocationLocationRequestInterface";
 
 export default class GeolocationLocationRequest implements GeolocationLocationRequestInterface {
+    id: number;
     geoname_id: number;
     capital: string;
     languages_ids: number[];
@@ -11,6 +12,7 @@ export default class GeolocationLocationRequest implements GeolocationLocationRe
     is_eu: boolean;
 
     constructor(attrs: GeolocationLocationRequestInterface) {
+        this.id = attrs.id;
         this.geoname_id = attrs.geoname_id;
         this.capital = attrs.capital;
         this.languages_ids = attrs.languages_ids;

@@ -46,28 +46,81 @@ geolocationRouter.post('/', [
     if (!errors.isEmpty()) {
         return res.status(422).json({errors: errors.array()});
     }
-    const geolocation = await geolocationRepository.create(new GeolocationRequest(req.body));
-    res.json(new GeolocationResponse(geolocation));
-    return next();
+    try {
+        const geolocation = await geolocationRepository.create(new GeolocationRequest(req.body));
+        res.json(new GeolocationResponse(geolocation));
+        return next();
+    } catch (e) {
+        return next(e);
+    }
 });
 
-geolocationRouter.put('/', (req, res) => {
-    res.send('Got a PUT request at /user');
+geolocationRouter.put('/:id', [
+    check('ip').not().isEmpty(),
+    check('type').not().isEmpty(),
+    check('continent_code').not().isEmpty(),
+    check('continent_name').not().isEmpty(),
+    check('country_code').not().isEmpty(),
+    check('country_name').not().isEmpty(),
+    check('region_code').not().isEmpty(),
+    check('region_name').not().isEmpty(),
+    check('city').not().isEmpty(),
+    check('zip').not().isEmpty(),
+    check('latitude').isNumeric(),
+    check('longitude').isNumeric(),
+    check('location.geoname_id').not().isEmpty(),
+    check('location.capital').not().isEmpty(),
+    check('location.capital').not().isEmpty(),
+    check('location.languages_ids').isArray(),
+    check('location.country_flag').not().isEmpty(),
+    check('location.country_flag_emoji').not().isEmpty(),
+    check('location.country_flag_emoji_unicode').not().isEmpty(),
+    check('location.calling_code').not().isEmpty(),
+    check('location.is_eu').not().isEmpty(),
+], async (req: Request, res: Response, next: NextFunction) => {
+    logger.debug(`geolocationRouter.put by id : ${req.params.id}`);
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).json({errors: errors.array()});
+    }
+    if (!req.params.id) {
+        res.status(400).json({
+            "message": "Bad request! please type Geolocation ID."
+        });
+    }
+
+    const geolocation = await geolocationRepository.findFullByPk(parseInt(req.params.id));
+    if (!geolocation) {
+        res.status(400).json({
+            "message": "Bad request! Geolocation not found!"
+        });
+    }
+    try {
+        const geolocationRequest = new GeolocationRequest(req.body);
+        const updatedGeolocation = await geolocationRepository.update(geolocation, geolocationRequest);
+        res.json(new GeolocationResponse(updatedGeolocation));
+        return next();
+    } catch (e) {
+        return next(e);
+    }
 });
 
 geolocationRouter.delete('/:id', async (req, res, next) => {
     const geolocation = await Geolocation.findByPk(parseInt(req.params.id));
-    if (geolocation) {
-        logger.debug(`geolocation: ${JSON.stringify(geolocation.get({plain: true}))}`);
+    if (!geolocation) {
+        res.status(404).json({
+            message: `Geolocation not found! ID: ${req.params.id}`
+        });
+    }
+    try {
         await geolocation.destroy();
         res.json({
             message: `Geolocation deleted!`
         });
         return next();
+    } catch (e) {
+        return next(e);
     }
-    res.status(404).json({
-        message: `Geolocation not found! ID: ${req.params.id}`
-    });
 });
 
 geolocationRouter.get('/:id', async (req, res, next) => {
@@ -77,16 +130,19 @@ geolocationRouter.get('/:id', async (req, res, next) => {
             "message": "Bad request! please type Geolocation ID."
         });
     }
-
-    const data = await geolocationRepository.findFullByPk(parseInt(req.params.id));
-    if (data) {
-        const geolocationResponse = new GeolocationResponse(data);
-        res.status(200).json(geolocationResponse);
-        return next();
+    try {
+        const data = await geolocationRepository.findFullByPk(parseInt(req.params.id));
+        if (data) {
+            const geolocationResponse = new GeolocationResponse(data);
+            res.status(200).json(geolocationResponse);
+            return next();
+        }
+        res.status(404).json({
+            message: `Geolocation not found! ID: ${req.params.id}`
+        });
+    } catch (e) {
+        return next(e);
     }
-    res.status(404).json({
-        message: `Geolocation not found! ID: ${req.params.id}`
-    });
 });
 
 export default geolocationRouter;
