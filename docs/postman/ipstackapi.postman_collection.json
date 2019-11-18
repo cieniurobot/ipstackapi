@@ -1,0 +1,173 @@
+{
+	"variables": [],
+	"info": {
+		"name": "ipstackapi",
+		"_postman_id": "5ee62358-eddb-385d-1fea-4a0b47c43b89",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "local",
+			"description": "",
+			"item": [
+				{
+					"name": "http://localhost:3000/api/rest/v1/geolocation",
+					"request": {
+						"url": "http://localhost:8081/api/rest/v1/geolocation/1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU3NDA5MzkyN30.HQtnOTCypvpcRe-0ff4nIWkIn2DDkkLYO7EogvOsDEk",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "test",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "test",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/auth/login",
+					"request": {
+						"url": "http://localhost:8081/auth/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"description": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "username",
+									"value": "test",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "test",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/rest/v1/geolocation/1",
+					"request": {
+						"url": "http://localhost:3000/api/rest/v1/geolocation/1",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU3MzkxODQ0NX0.WDX-CJ4y33kGXvKxhMaFWIprAM7GJUc0ye2TK42z514",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/rest/v1/geolocation/",
+					"request": {
+						"url": "http://localhost:8081/api/rest/v1/geolocation/",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU3MzkxODQ0NX0.WDX-CJ4y33kGXvKxhMaFWIprAM7GJUc0ye2TK42z514",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ip\": \"wp.pl\",\n  \"type\": \"ipv4\",\n  \"continent_code\": \"EU\",\n  \"continent_name\": \"Europe\",\n  \"country_code\": \"GB\",\n  \"country_name\": \"United Kingdom\",\n  \"region_code\": \"ENG\",\n  \"region_name\": \"England\",\n  \"city\": \"Islington\",\n  \"zip\": \"EC3R\",\n  \"latitude\": 51.53329849243164,\n  \"longitude\": -0.10000000149011612,\n  \"location\": {\n  \t\"geoname_id\": 2646003,\n    \"capital\": \"London\",\n    \"languages_ids\": [1,2],\n    \"country_flag\": \"http:\\/\\/assets.ipstack.com\\/flags\\/gb.svg\",\n    \"country_flag_emoji\": \"🇬🇧\",\n    \"country_flag_emoji_unicode\": \"U+1F1EC U+1F1E7\",\n    \"calling_code\": \"44\",\n    \"is_eu\": true\n  }\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:3000/api/rest/v1/geolocation/by-ip/51.89.165.7",
+					"request": {
+						"url": "http://localhost:8081/api/rest/v1/geolocation/by-ip/wp.pl",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU3MzkxODQ0NX0.WDX-CJ4y33kGXvKxhMaFWIprAM7GJUc0ye2TK42z514",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8081/api/rest/v1/geolocation/1",
+					"request": {
+						"url": "http://localhost:8081/api/rest/v1/geolocation/1",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTU3MzkxODQ0NX0.WDX-CJ4y33kGXvKxhMaFWIprAM7GJUc0ye2TK42z514",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"ip\": \"51.89.165.7\",\n  \"type\": \"ipv44\",\n  \"continent_code\": \"EU\",\n  \"continent_name\": \"Europe\",\n  \"country_code\": \"DE\",\n  \"country_name\": \"Deutsh\",\n  \"region_code\": \"ENG\",\n  \"region_name\": \"England\",\n  \"city\": \"Islington\",\n  \"zip\": \"EC3R\",\n  \"latitude\": 51.53329849243164,\n  \"longitude\": -0.10000000149011612,\n  \"location\": {\n  \t\"geoname_id\": 2646003,\n    \"capital\": \"Berlin\",\n    \"languages_ids\": [2,3],\n    \"country_flag\": \"http:\\/\\/assets.ipstack.com\\/flags\\/gb.svg\",\n    \"country_flag_emoji\": \"\\ud83c\\uddec\\ud83c\\udde7\",\n    \"country_flag_emoji_unicode\": \"U+1F1EC U+1F1E7\",\n    \"calling_code\": \"44\",\n    \"is_eu\": true\n  }\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
