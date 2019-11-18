@@ -1,0 +1,38 @@
+version: '3'
+services:
+  ipstackapi.app:
+    container_name: ipstackapi.app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      NODE_ENV: docker
+      DB_HOST: ipstackapi.mysql
+      DB_PORT: 3306
+      DB_NAME: ipstackapi
+      DB_USER: ipstackapi
+      DB_PASS: ipstackapipass
+      API_PORT: 8081
+      API_SECRET: 'dWNob3PFgm9uaWF3ZHVwaWV3xJnFvGE='
+      LOG_LEVEL: 'error'
+    depends_on:
+      - ipstackapi.mysql
+  ipstackapi.mysql:
+    container_name: ipstackapi.mysql
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: toor
+      MYSQL_DATABASE: ipstackapi
+      MYSQL_USER: ipstackapi
+      MYSQL_PASSWORD: ipstackapipass
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    volumes:
+      - ipstackapi_mysql:/var/lib/mysql
+    hostname: mysql.ipstackapi
+
+volumes:
+  ipstackapi_mysql:
