@@ -145,4 +145,26 @@ geolocationRouter.get('/:id', async (req, res, next) => {
     }
 });
 
+geolocationRouter.get('/by-ip/:ip', async (req, res, next) => {
+    logger.debug(`geolocationRouter.get by ip : ${req.params.ip}`);
+    if (!req.params.ip) {
+        res.status(400).json({
+            "message": "Bad request! please type Geolocation ip."
+        });
+    }
+    try {
+        const data = await geolocationRepository.findOneFullByIp(req.params.ip);
+        if (data) {
+            const geolocationResponse = new GeolocationResponse(data);
+            res.status(200).json(geolocationResponse);
+            return next();
+        }
+        res.status(404).json({
+            message: `Geolocation not found! For ip: ${req.params.ip}`
+        });
+    } catch (e) {
+        return next(e);
+    }
+});
+
 export default geolocationRouter;

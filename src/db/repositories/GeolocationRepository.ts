@@ -96,4 +96,31 @@ export default class GeolocationRepository {
             throw e;
         }
     }
+
+    async findOneFullByIp(ip: string): Promise<Geolocation> {
+        try {
+            const geolocation = await Geolocation.findOne({
+                where: {
+                    ip: ip
+                },
+                include: [
+                    {
+                        model: GeolocationLocation,
+                        as: 'location',
+                        include: [
+                            {
+                                model: GeolocationLocationLanguage,
+                                as: 'languages'
+                            }
+                        ]
+                    }
+                ]
+            });
+
+            return geolocation;
+        } catch (e) {
+            logger.error(e.message);
+            throw e;
+        }
+    }
 }
