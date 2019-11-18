@@ -1,0 +1,30 @@
+{
+  "ip": "51.89.165.7",
+  "type": "ipv4",
+  "continent_code": "EU",
+  "continent_name": "Europe",
+  "country_code": "GB",
+  "country_name": "United Kingdom",
+  "region_code": "ENG",
+  "region_name": "England",
+  "city": "Islington",
+  "zip": "EC3R",
+  "latitude": 51.53329849243164,
+  "longitude": -0.10000000149011612,
+  "location": {
+    "geoname_id": 2646003,
+    "capital": "London",
+    "languages": [
+      {
+        "code": "en",
+        "name": "English",
+        "native": "English"
+      }
+    ],
+    "country_flag": "http:\/\/assets.ipstack.com\/flags\/gb.svg",
+    "country_flag_emoji": "\ud83c\uddec\ud83c\udde7",
+    "country_flag_emoji_unicode": "U+1F1EC U+1F1E7",
+    "calling_code": "44",
+    "is_eu": true
+  }
+}

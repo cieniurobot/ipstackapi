@@ -41,7 +41,7 @@ module.exports = {
       latitude: {
         type: Sequelize.DECIMAL(10,8)
       },
-      longtitude: {
+      longitude: {
         type: Sequelize.DECIMAL(10,8)
       },
       created_at: {

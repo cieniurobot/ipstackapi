@@ -49,7 +49,6 @@
             "check-operator",
             "check-separator"
         ],
-        "no-console": [true, "log", "error"],
-        "no-unused-variable": [true]
+        "no-console": [true, "log", "error"]
     }
 }

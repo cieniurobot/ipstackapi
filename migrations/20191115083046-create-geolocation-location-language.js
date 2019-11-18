@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('geolocation_location_language', {
+    return queryInterface.createTable('g_location_language', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -28,6 +28,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('geolocation_location_language');
+    return queryInterface.dropTable('g_location_language');
   }
 };

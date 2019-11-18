@@ -1,0 +1,17 @@
+{
+  "apps": [
+    {
+      "name": "ipstackapi",
+      "script": "./dist/index.js",
+      "watch": false,
+      "instances": 1,
+      "exec_mode": "cluster",
+      "error_file": "/dev/null",
+      "out_file": "/dev/null",
+      "combine_logs": true,
+      "min_uptime": 5000,
+      "restart_delay": 5000,
+      "max_memory_restart": "2000G"
+    }
+  ]
+}

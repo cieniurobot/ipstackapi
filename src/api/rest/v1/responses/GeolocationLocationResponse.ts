@@ -2,8 +2,7 @@ import GeolocationLocationResponseInterface from "../interfaces/GeolocationLocat
 import GeolocationLocationLanguageResponseInterface from "../interfaces/GeollocationLocationLanguageResponseInterface";
 import GeolocationLocation from "../../../../db/models/GeolocationLocation";
 import GeolocationLocationLanguageResponse from "./GeolocationLocationLanguageResponse";
-import GeolocationLocationGeolocationLocationLanguage
-    from "../../../../db/models/GeolocationLocationGeolocationLocationLanguage";
+import GeolocationLocationLanguage from "../../../../db/models/GeolocationLocationLanguage";
 
 
 export default class GeolocationLocationResponse implements GeolocationLocationResponseInterface {
@@ -29,10 +28,13 @@ export default class GeolocationLocationResponse implements GeolocationLocationR
         this.languages = this.mapLanguagesToResponses(attrs.languages);
     }
 
-    mapLanguagesToResponses(languages: GeolocationLocationGeolocationLocationLanguage[]): Array<GeolocationLocationLanguageResponse> {
-        const languagesResponses = languages.map((item) => {
-            return new GeolocationLocationLanguageResponse(item.language);
+    mapLanguagesToResponses(languages: GeolocationLocationLanguage[]): Array<GeolocationLocationLanguageResponse> {
+        if (!languages) {
+            return [];
+        }
+
+        return languages.map((item) => {
+            return new GeolocationLocationLanguageResponse(item);
         });
-        return languagesResponses;
     }
 }

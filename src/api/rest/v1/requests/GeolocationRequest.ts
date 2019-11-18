@@ -1,10 +1,8 @@
-import GeolocationLocationResponseInterface from "../interfaces/GeolocationLocationResponseInterface";
-import GeolocationLocationResponse from "./GeolocationLocationResponse";
-import Geolocation from "../../../../db/models/Geolocation";
-import GeolocationResponseInterface from "../interfaces/GeolocationResponseInterface";
+import GeolocationRequestInterface from "../interfaces/GeolocationRequestInterface";
+import GeolocationLocationRequestInterface from "../interfaces/GeolocationLocationRequestInterface";
+import GeolocationLocationRequest from "./GeolocationLocationRequest";
 
-
-export default class GeolocationResponse implements GeolocationResponseInterface {
+export default class GeolocationRequest implements GeolocationRequestInterface {
     ip: string;
     type: string;
     continent_code: string;
@@ -17,11 +15,9 @@ export default class GeolocationResponse implements GeolocationResponseInterface
     zip: string;
     latitude: number;
     longitude: number;
-    location: GeolocationLocationResponseInterface;
-    created_at: Date;
-    updated_at: Date;
+    location: GeolocationLocationRequestInterface;
 
-    constructor(attrs: Geolocation) {
+    constructor(attrs: GeolocationRequestInterface) {
         this.ip = attrs.ip;
         this.type = attrs.type;
         this.continent_code = attrs.continent_code;
@@ -34,8 +30,6 @@ export default class GeolocationResponse implements GeolocationResponseInterface
         this.zip = attrs.zip;
         this.latitude = attrs.latitude;
         this.longitude = attrs.longitude;
-        this.location = new GeolocationLocationResponse(attrs.location);
-        this.created_at = attrs.created_at;
-        this.updated_at = attrs.updated_at;
+        this.location = new GeolocationLocationRequest(attrs.location);
     }
 }

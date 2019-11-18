@@ -1,6 +1,6 @@
-import GeolocationLocationResponseInterface from "./GeolocationLocationResponseInterface";
+import GeolocationLocationRequestInterface from "./GeolocationLocationRequestInterface";
 
-export default interface GeolocationResponseInterface {
+export default interface GeolocationRequestInterface {
     ip: string;
     type: string;
     continent_code: string;
@@ -13,7 +13,5 @@ export default interface GeolocationResponseInterface {
     zip: string;
     latitude: number;
     longitude: number;
-    location: GeolocationLocationResponseInterface;
-    created_at: Date;
-    updated_at: Date;
+    location: GeolocationLocationRequestInterface;
 }
