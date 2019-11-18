@@ -4,6 +4,11 @@
 Aplication store geolocation data in the database, based on IP address or URL.
 
 
+### Requirements
+- Node.js 10.15
+- Docker
+- docker-compose
+
 ### Installation
 
 ```bash
@@ -44,3 +49,6 @@ $ npm run test
 $ npm run build
 
 ```
+
+### API Endpoints
+You can import postman config from ./docs/postman/
