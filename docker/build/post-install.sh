@@ -25,7 +25,12 @@ cat > ${APP_ROOT}/config/docker.json << EOF
 }
 EOF
 
-
+until nc -z -v -w30 $DB_HOST 3306
+do
+  echo "Waiting for database connection..."
+  # wait for 5 seconds before check again
+  sleep 5
+done
 
 echo "Runing migrations"
 npm run db:migrate
