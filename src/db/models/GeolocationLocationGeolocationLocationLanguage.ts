@@ -1,24 +1,18 @@
-import {BelongsTo, Column, CreatedAt, ForeignKey, Model, Table, UpdatedAt} from "sequelize-typescript";
+import {Column, CreatedAt, ForeignKey, Model, Table, UpdatedAt} from "sequelize-typescript";
 import GeolocationLocationLanguage from "./GeolocationLocationLanguage";
 import GeolocationLocation from "./GeolocationLocation";
 
 @Table({
-    tableName: 'geolocation_location_geolocation_location_language',
+    tableName: 'g_location_gl_language',
 })
 export default class GeolocationLocationGeolocationLocationLanguage extends Model<GeolocationLocationGeolocationLocationLanguage> {
     @ForeignKey(() => GeolocationLocation)
     @Column
-    geolocation_location_id: number;
-
-    @BelongsTo(() => GeolocationLocation)
-    location: GeolocationLocation;
+    gl_id: number;
 
     @ForeignKey(() => GeolocationLocationLanguage)
     @Column
-    geolocation_location_language_id: number;
-
-    @BelongsTo(() => GeolocationLocationLanguage)
-    language: GeolocationLocationLanguage;
+    gll_id: number;
 
     @CreatedAt
     created_at: Date;

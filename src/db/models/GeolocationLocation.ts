@@ -1,8 +1,9 @@
-import {BelongsTo, Column, CreatedAt, ForeignKey, HasMany, Model, Table, UpdatedAt} from "sequelize-typescript";
+import {BelongsTo, BelongsToMany, Column, CreatedAt, ForeignKey, Model, Table, UpdatedAt} from "sequelize-typescript";
 import Geolocation from "./Geolocation";
+import GeolocationLocationGeolocationLocationLanguage from "./GeolocationLocationGeolocationLocationLanguage";
 import GeolocationLocationLanguage from "./GeolocationLocationLanguage";
 
-@Table({tableName:'geolocation_location'})
+@Table({tableName: 'g_location'})
 export default class GeolocationLocation extends Model<GeolocationLocation> {
     @Column
     geoname_id: number;
@@ -32,7 +33,10 @@ export default class GeolocationLocation extends Model<GeolocationLocation> {
     @BelongsTo(() => Geolocation)
     geolocation: Geolocation;
 
-    @HasMany(() => GeolocationLocationLanguage, {onDelete: 'cascade'})
+    @BelongsToMany(
+        () => GeolocationLocationLanguage,
+        () => GeolocationLocationGeolocationLocationLanguage,
+    )
     languages: GeolocationLocationLanguage[];
 
     @CreatedAt

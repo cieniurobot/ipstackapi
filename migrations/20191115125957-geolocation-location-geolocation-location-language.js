@@ -1,20 +1,21 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('geolocation_location_geolocation_location_language', {
+    return queryInterface.createTable('g_location_gl_language', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      geolocation_location_id: {
+      gl_id: {
         type: Sequelize.INTEGER,
-        references: { model: 'geolocation_location', key: 'id' }
+        onDelete: 'cascade',
+        references: { model: 'g_location', key: 'id'}
       },
-      geolocation_location_language_id: {
+      gll_id: {
         type: Sequelize.INTEGER,
-        references: { model: 'geolocation_location_language', key: 'id' }
+        references: { model: 'g_location_language', key: 'id' }
       },
       created_at: {
         allowNull: false,
@@ -27,6 +28,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('geolocation_location_geolocation_location_language');
+    return queryInterface.dropTable('g_location_gl_language');
   }
 };

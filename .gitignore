@@ -3,3 +3,6 @@ node_modules
 config/*.json
 error.log
 debug.log
+coverage
+distTest
+dist

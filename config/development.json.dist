@@ -1,6 +1,7 @@
 {
   "api":{
-    "port": 3000
+    "port": 3000,
+    "secret": "dWNob3PFgm9uaWF3ZHVwaWV3xJnFvGE="
   },
   "db": {
     "username": "root",
